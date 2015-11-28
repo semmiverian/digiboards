@@ -32,7 +32,7 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 
-Route::resource('home','homeController');
+// Route::resource('home','homeController');
 // Route::get('home',function(){
 // 	$data=Billboard::all();
 // 	return view('home',compact('data'));
@@ -48,6 +48,7 @@ Route::get('auth/upgradeAccount',function(){
  });
 
 Route::get('billboardList','merchantController@billboardList');
+
 // Route::get('billboardList',function(){
 // 	$data=Billboard::all();
 //  	return view ('billboardList',compact('data'));
@@ -66,8 +67,7 @@ Route::post('auth/addBillboard','merchantController@store');
 //         return view('billboardList',compact('data'));
 // });
 Route::get('auth/updateBillboard','merchantController@edit');
-Route::post('auth/updateBillboard','merchantController@update');
-
+Route::patch('updateBillboard/{id}','merchantController@update');
 Route::delete('billboardList/{id}', 'merchantController@destroy');
 
 Route::get('orderList',function(){

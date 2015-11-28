@@ -14,9 +14,9 @@
                             </ul>
                         </div>
                     @endif
-            <form method="post" action="../{{$data->id}}">
-            {{csrf_field()}}            
-            <input  type="hidden" value="PATCH" name="_method">
+            <form method="post" action="../../updateBillboard/{{$data->id}}">
+            {{csrf_field()}}
+            {{ method_field('PATCH') }}
                 <div class="form-group">
                     <label for="inputNama">Nama</label>
                     <input type="text" value="{{$data->nama}}" class="form-control" id="inputNama" placeholder="Nama" name="nama">
@@ -34,11 +34,11 @@
                 <div class="form-group">
                     <label for="inputLongitude">Longitude</label>
                     <input type="text" name="longitude" value="{{$data->longitude}}" class="form-control" id="inputLongitude" placeholder="Longitude">
-                </div> 
+                </div>
                 <div class="form-group">
                     <label for="inputUkuran">Ukuran</label>
                     <input type="text" name="ukuran" value="{{$data->ukuran}}" class="form-control" id="inputUkuran" placeholder="Ukuran">
-                </div> 
+                </div>
                 <div class="form-group">
                     <label for="inputPermukaan">Jumlah Permukaan</label>
                     <input type="text" name="permukaan" value="{{$data->permukaan}}" class="form-control" id="inputPermukaan" placeholder="Jumlah Permukaan">
