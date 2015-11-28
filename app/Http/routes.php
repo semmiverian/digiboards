@@ -14,6 +14,7 @@
 use App\Billboard;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\ChangePasswordRequest;
 use App\User;
 
 Route::get('/', function () {
@@ -79,6 +80,17 @@ Route::get('auth/changePassword',function(){
  	return view ('auth/changePassword');
  });
 
+ Route::post('auth/changePassword',function(ChangePasswordRequest $request ){
+   // defini variabel
+    $user= new App\User;
+    $email = $request->input('email');
+    $oldPassword = $request->input('oldPassword');
+    $newPassword = $request->input('newPassword');
+
+    // Proses cek password yang di ambil
+    return $user->changePassword($email, $oldPassword, $newPassword);
+ });
+
 Route::get('auth/forgotPassword',function(){
  	return view ('auth/forgotPassword');
 
@@ -103,6 +115,8 @@ Route::get('foo',function(){
   // Buat testing wkwkwkwkwkkwkw
 
 });
+
+
 Route::post('auth/forgotPassword', function(Request $request){
   // define variabel
   $email =  $request->input('email');

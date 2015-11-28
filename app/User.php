@@ -40,7 +40,7 @@ class User extends Model implements AuthenticatableContract,
 
     /**
     * Query validasi email yang di masukkin ketika forgot password
-    *
+    *@var string email
     */
     public function findEmail($email){
       if(User::where('email','=',$email)->first() !=null){
@@ -52,14 +52,17 @@ class User extends Model implements AuthenticatableContract,
 
     /**
     * Query untuk masukkin token yang nanti bisa di akses buat forgot password
-    *
+    *@var string forgotToken
     */
     public function insertForgotToken($forgotToken){
       $insertForgotToken = User::findOrFail(Auth::user()->id);
       $insertForgotToken->forgotToken=$forgotToken;
       $insertForgotToken->save();
     }
-
+    /**
+    * Query untuk Validate token waktu get url buat reset password
+    * @var string token
+    */
     public function tokenValidate($token)
     {
       if(User::where('forgotToken','=',$token)->first() !=null){
@@ -67,6 +70,26 @@ class User extends Model implements AuthenticatableContract,
       }else{
         return 'False token';
       }
+    }
 
+
+    /**
+    * Query untuk change password
+    * @var string email
+    * @var string oldPassword
+    * @var string newPassword
+    */
+    public function changePassword($email , $oldPassword , $newPassword){
+      $user = User::where('email','=',$email)->first();
+      // pertama ngecek old password yang dimasukin sama ga sama email dia
+      if(Hash::check($oldPassword,Auth::user()->password)){
+        // kalau berhasil maka bakal update password nya dengan password baru
+        $user->password = bcrypt($newPassword);
+        $user->save();
+        return 'Berhasil ganti password';
+      }else{
+        // kalau old password yang dimasukin salah
+        return 'Old Password does not match';
+      }
     }
 }

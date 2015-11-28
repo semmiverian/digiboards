@@ -14,7 +14,7 @@
                             </ul>
                         </div>
                     @endif
-            <form method="post" action="auth/changePassword">
+            <form method="post" action="changePassword">
               {{csrf_field()}}
               <div class="form-group">
                   <label for="inputEmail">Email</label>
@@ -22,11 +22,11 @@
               </div>
               <div class="form-group">
                   <label for="inputOldPass">Password Lama</label>
-                  <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Masukkan Password Lama">
+                  <input type="password" name="oldPassword" class="form-control" id="inputOldPassword" placeholder="Masukkan Password Lama">
               </div>
               <div class="form-group">
                   <label for="inputNewPass">Password Baru</label>
-                  <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Masukkan Password Baru">
+                  <input type="password" name="newPassword" class="form-control" id="inputNewPassword" placeholder="Masukkan Password Baru">
               </div>
               <div class="form-group">
                   <button type="submit" class="btn btn-success">Send</button>
